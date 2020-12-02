@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hello Bulma!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css" />
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        HTTP Request Examples
+      </h1>
+      <article id="getData" class="message">
+        <div class="message-body"></div>
+      </article>
+      <div id="doSomething" class="button is-small is-link">Get the data</div>
+    </div>
+  </section>
+  
+  <script>
+    // HTTP Request
+	$(document).ready(function () {
+      const endPoint = "https://jsonplaceholder.typicode.com/posts/1";
+      $('#doSomething').click(function () {
+        $.get(endPoint, function (data, status) {
+          if (status == "success") {
+            console.log(data);
+            $('.message-body').append(JSON.stringify(data));
+          } else {
+            console.log(`Error ${status}`);
+          }
+        });
+      });
+    });
+	
+  </script>
+</body>
+</html>
