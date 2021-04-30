@@ -34,20 +34,23 @@
       // HTTP Request
       const titleElm = document.querySelector(".title-message");
       const bodyElm = document.querySelector(".body-message");
-      const element = document.getElementById("getData");
-      const xhr = new XMLHttpRequest();
-      xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/1");
-      xhr.send();
+      const element = document.getElementById("doSomething");
 
-      xhr.onreadystatechange = function () {
-        if (this.readyState === 4) {
-          if (this.status == 200 && this.status < 300) {
-            let { title, body } = JSON.parse(this.responseText);
-            titleElm.innerHTML += title;
-            bodyElm.innerHTML += body;
+      element.addEventListener("click", () => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/1");
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+          if (this.readyState === 4) {
+            if (this.status == 200 && this.status < 300) {
+              let { title, body } = JSON.parse(this.responseText);
+              titleElm.innerHTML += title;
+              bodyElm.innerHTML += body;
+            }
           }
-        }
-      };
+        };
+      });
     </script>
   </body>
 </html>
