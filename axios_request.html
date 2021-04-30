@@ -17,7 +17,7 @@
   <body>
     <section class="section">
       <div class="container">
-        <h1 class="title">HTTP Request Examples</h1>
+        <h1 class="title">HTTP Request Examples :: Axios</h1>
         <article id="getData" class="message">
           <div class="message-body title-message">
             <mark>title:</mark>
@@ -30,26 +30,23 @@
       </div>
     </section>
 
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+    ></script>
     <script>
-      // HTTP Request
       const titleElm = document.querySelector(".title-message");
       const bodyElm = document.querySelector(".body-message");
-      const element = document.getElementById("doSomething");
+      const get = document.getElementById("doSomething");
 
-      element.addEventListener("click", () => {
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/1");
-        xhr.send();
-
-        xhr.onreadystatechange = function () {
-          if (this.readyState === 4) {
-            if (this.status == 200 && this.status < 300) {
-              let { title, body } = JSON.parse(this.responseText);
-              titleElm.innerHTML += title;
-              bodyElm.innerHTML += body;
-            }
-          }
-        };
+      get.addEventListener("click", async () => {
+        const { data } = await axios.get(
+          "https://jsonplaceholder.typicode.com/posts/1"
+        );
+        const { title, body } = data;
+        titleElm.innerHTML += title;
+        bodyElm.innerHTML += body;
       });
     </script>
   </body>
