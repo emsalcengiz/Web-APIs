@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Bulma!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+  </head>
+
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">HTTP Request Examples</h1>
+        <article id="getData" class="message">
+          <div class="message-body title-message">
+            <mark>title:</mark>
+          </div>
+          <div class="message-body body-message">
+            <mark>body:</mark>
+          </div>
+        </article>
+        <div id="doSomething" class="button is-small is-link">Get the data</div>
+      </div>
+    </section>
+
+    <script>
+      // HTTP Request
+      const titleElm = document.querySelector(".title-message");
+      const bodyElm = document.querySelector(".body-message");
+      const get = document.getElementById("doSomething");
+      get.addEventListener("click", () => {
+        fetch("https://jsonplaceholder.typicode.com/posts/1", {
+          method: "GET",
+        })
+          .then((res) => res.json())
+          .then((json) => {
+            let { title, body } = json;
+            titleElm.innerHTML += title;
+            bodyElm.innerHTML += body;
+          })
+          .catch((err) => console.log(err));
+      });
+    </script>
+  </body>
+</html>
